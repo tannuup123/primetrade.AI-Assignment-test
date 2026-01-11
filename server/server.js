@@ -14,17 +14,26 @@ const app = express();
 // CONNECT DATABASE
 connectDB();
 
-// ✅ CORS CONFIG (IMPORTANT)
+// ✅ UPDATED CORS CONFIG
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:3000",
+  "https://primetrade-ai-assignment-test.vercel.app",
+  "https://primetrade-ai-assignment-test-1emeeqs1u.vercel.app" // Add the one from your error message
+];
+
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173", // local frontend
-      "http://localhost:3000",
-      "http://primetrade-ai-assignment-test.vercel.app",
-
-      "https://primetrade-ai-assignment-t-git-0792e3-tanmay-upadhyays-projects.vercel.app/", // 👈 apna vercel domain
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    origin: function (origin, callback) {
+      // allow requests with no origin (like mobile apps or curl requests)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) === -1) {
+        const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+        return callback(new Error(msg), false);
+      }
+      return callback(null, true);
+    },
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
   })
 );
