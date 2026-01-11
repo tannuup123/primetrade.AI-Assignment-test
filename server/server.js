@@ -86,11 +86,8 @@ app.use(cors({
   },
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   credentials: true,
-  allowedHeaders: ["Content-Type", "Authorization"] // Explicitly allow these
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"]
 }));
-
-// 3. Handle OPTIONS preflight globally (important for Render/Vercel)
-app.options("*", cors());
 
 // 4. Middlewares
 app.use(express.json());
