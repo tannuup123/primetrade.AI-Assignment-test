@@ -155,7 +155,7 @@ Backend will run on: http://localhost:5000
 ---
 🧪 Demo Credentials
 ```bash
-Email: test@demo.com
+Email: test@gmail.com
 Password: 123456
 ```
 ---
