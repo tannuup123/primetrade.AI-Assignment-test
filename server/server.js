@@ -71,19 +71,21 @@ connectDB();
 // 2. Optimized CORS Configuration
 app.use(cors({
   origin: function (origin, callback) {
-    const allowedOrigins = [
-      "http://localhost:5173",
-      "http://localhost:3000",
-      "https://primetrade-ai-assignment-test-n7ywck52g.vercel.app",
-      "https://primetrade-ai-assignment-test.vercel.app"
-    ];
-
+    // allow server-to-server & tools like Postman
     if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
+
+    // localhost
+    if (origin.startsWith("http://localhost")) {
+      return callback(null, true);
     }
+
+    // allow all vercel preview + prod URLs
+    if (origin.endsWith(".vercel.app")) {
+      return callback(null, true);
+    }
+
+    // block everything else
+    return callback(new Error("Not allowed by CORS"));
   },
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   credentials: true,
