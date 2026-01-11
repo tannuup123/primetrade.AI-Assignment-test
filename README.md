@@ -167,6 +167,7 @@ Detailed API documentation is available in the repository as:
 
 
   ---
+  
 👤 Author
 
 Tanmay Upadhyay
