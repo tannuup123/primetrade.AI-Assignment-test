@@ -20,6 +20,8 @@ app.use(
     origin: [
       "http://localhost:5173", // local frontend
       "http://localhost:3000",
+      "http://primetrade-ai-assignment-test.vercel.app",
+
       "https://primetrade-ai-assignment-t-git-0792e3-tanmay-upadhyays-projects.vercel.app/", // 👈 apna vercel domain
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
