@@ -1,4 +1,4 @@
-// server.js
+// server.js 
 
 require("dotenv").config();
 const express = require("express");
@@ -14,8 +14,20 @@ const app = express();
 // CONNECT DATABASE
 connectDB();
 
+// ✅ CORS CONFIG (IMPORTANT)
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173", // local frontend
+      "http://localhost:3000",
+      "https://primetrade-ai-assignment-test.vercel.app", // 👈 apna vercel domain
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
+
 // middlewares
-app.use(cors());
 app.use(express.json());
 
 // routes
