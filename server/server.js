@@ -77,11 +77,20 @@ const allowedOrigins = [
 ];
 
 app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
+  origin: function (origin, callback) {
+    // 1. Allow requests with no origin (like mobile apps/Postman)
+    if (!origin) return callback(null, true);
+
+    // 2. Check if the origin is in our whitelist
+    const isWhitelisted = allowedOrigins.indexOf(origin) !== -1;
+
+    // 3. Check if it's a Vercel preview URL (matches your project name)
+    const isVercelPreview = origin.includes("primetrade-ai-assignment-test") && origin.includes("vercel.app");
+
+    if (isWhitelisted || isVercelPreview) {
       callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS'));
+      callback(new Error("Not allowed by CORS"));
     }
   },
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
