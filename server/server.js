@@ -1,58 +1,113 @@
-// server.js 
+// // server.js 
+
+// require("dotenv").config();
+// const express = require("express");
+// const cors = require("cors");
+// const connectDB = require("./config/db");
+
+// const authRoutes = require("./routes/authRoutes");
+// const userRoutes = require("./routes/userRoutes");
+// const taskRoutes = require("./routes/taskRoutes");
+
+// const app = express();
+
+// // CONNECT DATABASE
+// connectDB();
+
+// // ✅ UPDATED CORS CONFIG
+// const allowedOrigins = [
+//   "http://localhost:5173",
+//   "http://localhost:3000",
+//   "https://primetrade-ai-assignment-test.vercel.app",
+//   "https://primetrade-ai-assignment-test-1emeeqs1u.vercel.app" // Add the one from your error message
+// ];
+
+// app.use(
+//   cors({
+//     origin: function (origin, callback) {
+//       // allow requests with no origin (like mobile apps or curl requests)
+//       if (!origin) return callback(null, true);
+//       if (allowedOrigins.indexOf(origin) === -1) {
+//         const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+//         return callback(new Error(msg), false);
+//       }
+//       return callback(null, true);
+//     },
+//     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+//     credentials: true,
+//   })
+// );
+
+// // middlewares
+// app.use(express.json());
+
+// // routes
+// app.use("/api/auth", authRoutes);
+// app.use("/api/user", userRoutes);
+// app.use("/api/tasks", taskRoutes);
+
+// // test route
+// app.get("/", (req, res) => {
+//   res.send("PrimeTrade.ai Backend is running 🚀");
+// });
+
+// const PORT = process.env.PORT || 5000;
+
+// app.listen(PORT, () => {
+//   console.log(`Server running on port ${PORT}`);
+// });
+
 
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/db");
 
-const authRoutes = require("./routes/authRoutes");
-const userRoutes = require("./routes/userRoutes");
-const taskRoutes = require("./routes/taskRoutes");
-
 const app = express();
 
-// CONNECT DATABASE
+// 1. Database Connection
 connectDB();
 
-// ✅ UPDATED CORS CONFIG
+// 2. Optimized CORS Configuration
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:3000",
   "https://primetrade-ai-assignment-test.vercel.app",
-  "https://primetrade-ai-assignment-test-1emeeqs1u.vercel.app" // Add the one from your error message
+  "https://primetrade-ai-assignment-test-1emeeqs1u.vercel.app"
 ];
 
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      // allow requests with no origin (like mobile apps or curl requests)
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.indexOf(origin) === -1) {
-        const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-        return callback(new Error(msg), false);
-      }
-      return callback(null, true);
-    },
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    credentials: true,
-  })
-);
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  credentials: true,
+  allowedHeaders: ["Content-Type", "Authorization"] // Explicitly allow these
+}));
 
-// middlewares
+// 3. Handle OPTIONS preflight globally (important for Render/Vercel)
+app.options("*", cors());
+
+// 4. Middlewares
 app.use(express.json());
 
-// routes
+// 5. Routes
+const authRoutes = require("./routes/authRoutes");
+const userRoutes = require("./routes/userRoutes");
+const taskRoutes = require("./routes/taskRoutes");
+
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/tasks", taskRoutes);
 
-// test route
+// Test route
 app.get("/", (req, res) => {
   res.send("PrimeTrade.ai Backend is running 🚀");
 });
 
 const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
