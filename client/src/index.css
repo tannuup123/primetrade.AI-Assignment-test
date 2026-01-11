@@ -1,0 +1,195 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: rgba(255, 255, 255, 0.9);
+  background-color: #181818;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---------------- LINKS ---------------- */
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #000000;
+}
+
+/* ---------------- BODY ---------------- */
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #181818;
+}
+
+/* ---------------- HEADINGS ---------------- */
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+/* ---------------- BUTTON BASE ---------------- */
+
+button {
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.7em 1.3em;
+  font-size: 1em;
+  font-weight: 600;
+  font-family: inherit;
+  background: linear-gradient(180deg, #2a2a2a, #1a1a1a);
+  color: white;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px #d5d7fd(0,0,0,0.7);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* ---------------- ANIMATIONS ---------------- */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out both;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+.animate-shake {
+  animation: shake 0.3s ease-in-out;
+}
+* {
+  box-sizing: border-box;
+}
+
+/* ---------------- LOGIN PAGE ---------------- */
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at top, #2c2c2c, #181818);
+}
+
+/* ---------------- LOGIN CARD ---------------- */
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 32px;
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(14px);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+
+  animation: fadeIn 0.6s ease-out both;
+}
+
+/* ---------------- TEXT ---------------- */
+
+.login-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.login-subtitle {
+  font-size: 0.95rem;
+  opacity: 0.75;
+  margin-bottom: 24px;
+}
+
+.login-error {
+  color: #ff6b6b;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+/* ---------------- INPUTS (FIXED PROPERLY) ---------------- */
+
+.login-card input {
+  width: 100%;
+  padding: 12px;              /* 🔥 SAME as login button */
+  margin-bottom: 16px;
+
+  border-radius: 12px;        /* 🔥 SAME radius */
+  border: 1px solid rgba(0, 0, 0, 0.884);
+
+  background: rgba(0,0,0,0.35);
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+
+
+.login-card input::placeholder {
+  color: rgba(255,255,255,0.45);
+}
+
+.login-card input:focus {
+  border-color: #646cff;
+  background: rgba(0,0,0,0.55);
+
+  box-shadow:
+    0 0 0 1px rgba(100,108,255,0.6),
+    0 10px 25px rgba(8, 8, 8, 0.6);
+}
+
+/* ---------------- LOGIN BUTTON ---------------- */
+
+.login-card button {
+  width: 100%;
+  margin-top: 10px;
+  padding: 14px;
+  border-radius: 14px;
+  
+}
+
+/* ---------------- FOOTER ---------------- */
+
+.login-footer {
+  margin-top: 18px;
+  font-size: 0.8rem;
+  opacity: 0.6;
+  text-align: center;
+}
