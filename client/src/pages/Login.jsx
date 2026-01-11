@@ -25,6 +25,8 @@ const Login = () => {
         password,
       });
 
+      console.log(res.data);
+
       login(res.data);
       navigate("/");
     } catch (err) {
