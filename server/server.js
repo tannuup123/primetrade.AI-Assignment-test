@@ -55,7 +55,7 @@
 
 // app.listen(PORT, () => {
 //   console.log(`Server running on port ${PORT}`);
-// });
+// }); this code is comment out just to test because there was a error while deploying my project 
 
 
 require("dotenv").config();
