@@ -89,7 +89,7 @@ app.use(cors({
   credentials: true,
   allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"]
 }));
-app.options("*", cors());
+
 // 4. Middlewares
 app.use(express.json());
 
