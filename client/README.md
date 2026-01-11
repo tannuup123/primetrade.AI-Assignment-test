@@ -159,6 +159,13 @@ Email: test@gmail.com
 Password: 123456
 ```
 ---
+
+## 📄 API Documentation
+Detailed API documentation is available in the repository as:
+[api doc.pdf](https://github.com/user-attachments/files/24553240/api.doc.pdf)
+
+
+  ---
 👤 Author
 
 Tanmay Upadhyay
