@@ -8,7 +8,7 @@ The project demonstrates frontend skills with React along with backend integrati
 ## 🔗 Live Links
 
 - **Frontend (Vercel):**  
-  https://primetrade-ai-assignment-test-n7ywck52g.vercel.app
+  https://primetrade-ai-assignment-test.vercel.app
 - **Backend (Render):**  
   https://primetrade-ai-assignment-test.onrender.com
 
